@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+
+<head>
+    <title>주소 찾기</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0" />
+</head>
+
+<h1 id="title">This is web title</h1>
+  <button type="button" onclick="sendBack()">send message to flutter</button>
+  <script>
+    function sendBack() {
+        JavaScriptChannel.postMessage("Hello from JS");
+    }
+  </script>
+
+</html>
