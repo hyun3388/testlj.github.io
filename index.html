@@ -321,7 +321,9 @@
         });
         polyline.setMap(map);
 
-        polylineLength = polyline.getLength();
+         var distance = polyline.getLength();
+
+        polylineLength =  distance
 
 
 
@@ -339,7 +341,7 @@
       }
     }
     function sendBack() {
-      JavaScriptChannel.postMessage(polylineLength);
+      JavaScriptChannel.postMessage(polylineLength.toString);
     }
   </script>
 </body>
