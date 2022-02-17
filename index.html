@@ -196,7 +196,8 @@ function createCoffeeMarkers() {
         coffeeMarkers.push(marker);
         (function(marker, place) {
                 kakao.maps.event.addListener(marker, 'click', function() {
-                   infowindow.open(map, marker);  
+                   infowindow.open(map, marker);
+                  sendBack();
                 });
             })(marker, coffeePositions[i]);
     }     
@@ -308,6 +309,9 @@ function changeMarker(type){
         setCarparkMarkers(map);  
     }    
 } 
+  function sendBack() {
+        JavaScriptChannel.postMessage("oo치과");
+    }
 </script>
 </body>
 
