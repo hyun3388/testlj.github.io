@@ -75,7 +75,7 @@
     }
   </style>
   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2c1997b2868fa20700ce0e899c956fd4"></script>
-  <div id="mapwrap"> 
+ <div id="mapwrap"> 
     <!-- 지도가 표시될 div -->
     <div id="map" style="width:100%;height:350px;"></div>
     <!-- 지도 위에 표시될 마커 카테고리 -->
@@ -149,6 +149,15 @@ createStoreMarkers(); // 편의점 마커를 생성하고 편의점 마커 배�
 createCarparkMarkers(); // 주차장 마커를 생성하고 주차장 마커 배열에 추가합니다
 
 changeMarker('coffee'); // 지도에 커피숍 마커가 보이도록 설정합니다    
+// 마커를 클릭했을 때 마커 위에 표시할 인포윈도우를 생성합니다
+var iwContent = '<div style="padding:5px;">oo치과입니다</div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+    iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
+
+// 인포윈도우를 생성합니다
+var infowindow = new kakao.maps.InfoWindow({
+    content : iwContent,
+});
+
 
 
 // 마커이미지의 주소와, 크기, 옵션으로 마커 이미지를 생성하여 리턴하는 함수입니다
@@ -161,7 +170,8 @@ function createMarkerImage(src, size, options) {
 function createMarker(position, image) {
     var marker = new kakao.maps.Marker({
         position: position,
-        image: image
+        image: image,
+        clickable: true
     });
     
     return marker;  
@@ -169,6 +179,7 @@ function createMarker(position, image) {
    
 // 커피숍 마커를 생성하고 커피숍 마커 배열에 추가하는 함수입니다
 function createCoffeeMarkers() {
+    
     
     for (var i = 0; i < coffeePositions.length; i++) {  
         
@@ -181,9 +192,13 @@ function createCoffeeMarkers() {
         // 마커이미지와 마커를 생성합니다
         var markerImage = createMarkerImage(markerImageSrc, imageSize, imageOptions),    
             marker = createMarker(coffeePositions[i], markerImage);  
-        
         // 생성된 마커를 커피숍 마커 배열에 추가합니다
         coffeeMarkers.push(marker);
+        (function(marker, place) {
+                kakao.maps.event.addListener(marker, 'click', function() {
+                   infowindow.open(map, marker);  
+                });
+            })(marker, coffeePositions[i]);
     }     
 }
 
