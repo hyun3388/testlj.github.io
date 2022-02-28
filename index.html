@@ -90,7 +90,7 @@
                     <span class="ico_comm ico_store"></span>
                     2번치과
                 </li>
-                <li id="carparkMenu" onclick="sendBack()">
+                <li id="carparkMenu" onclick="sendBack('web to app')">
                     <span class="ico_comm ico_carpark"></span>
                     3번치과
                 </li>
@@ -98,6 +98,7 @@
         </div>
     </div>
     <script>
+        
         var mapContainer = document.getElementById('map'), 
             mapOption = {
                 center: new kakao.maps.LatLng(37.498004414546934, 127.02770621963765),
@@ -169,6 +170,7 @@
             content: iwContent,
         });
 
+        
 
 
         function createMarkerImage(src, size, options) {
@@ -300,9 +302,12 @@
 
             }
         }
-        function sendBack() {
-            JavaScriptChannel.postMessage('엠아이솔루션 테스트');
+
+        function sendBack(msg) {
+            console.log('send back msg clicked');
+            JavaScriptChannel.postMessage(msg);
         }
+        
     </script>
 </body>
 
