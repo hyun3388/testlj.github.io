@@ -170,12 +170,6 @@
             content: iwContent,
         });
 
-        
-        function appToWeb(msg){
-            console.log(msg);
-            //alert(msg);
-        }
-
         function createMarkerImage(src, size, options) {
             var markerImage = new kakao.maps.MarkerImage(src, size, options);
             return markerImage;
@@ -311,6 +305,10 @@
             JavaScriptChannel.postMessage(msg);
         }
         
+        function appToWeb(msg){
+            console.log(msg);
+            //alert(msg);
+        }
     </script>
 </body>
 
