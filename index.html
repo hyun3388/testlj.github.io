@@ -302,11 +302,16 @@
 
         function sendBack(msg) {
             console.log('send back msg clicked');
+            mapOption = {
+                center: new kakao.maps.LatLng(37.498004414546934, 127.02770621963765),
+                level: 3 
+            };
             JavaScriptChannel.postMessage(msg);
         }
         
         function appToWeb(msg){
             console.log(msg);
+            console.log('app to Web clicked');
             //alert(msg);
         }
     </script>
